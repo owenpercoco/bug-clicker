@@ -3,6 +3,7 @@ import BugIcon from './components/BugIcon';
 import './App.css';
 
 function App() {
+  const [position, setPosition] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
   const [rotation, setRotation] = useState(0);
 
   const calculateAngle = (x:number, y:number) => {
@@ -15,14 +16,22 @@ function App() {
   };
 
   const onClick = (event: MouseEvent) => {
-    console.log('in the onclick');
-    console.log(event.clientX, event.clientY);
-    const angle = calculateAngle(event.clientX, event.clientY);
-    setRotation(angle)
+    const { clientX, clientY } = event;
+    const angle = calculateAngle(clientX, clientY);
+    setRotation(angle);
+    setPosition({ x: clientX, y: clientY });
   }
   return (
     <div className="App" onClick={onClick}>
-      <BugIcon rotate={rotation}/>
+      <div
+        className="bug-container"
+        style={{
+          transform: `translate(${position.x - 100}px, ${position.y - 100}px) rotate(${rotation}deg)`,
+        }}
+      >
+        <BugIcon />
+      </div>
+      
     </div>
   );
 }
