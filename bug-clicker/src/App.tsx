@@ -23,15 +23,7 @@ function App() {
   }
   return (
     <div className="App" onClick={onClick}>
-      <div
-        className="bug-container"
-        style={{
-          transform: `translate(${position.x - 100}px, ${position.y - 100}px) rotate(${rotation}deg)`,
-        }}
-      >
-        <BugIcon />
-      </div>
-      
+      <BugIcon rotate={rotation} position={position}/>
     </div>
   );
 }

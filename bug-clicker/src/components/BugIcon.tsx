@@ -1,12 +1,17 @@
 import React from 'react';
 
+interface propsInterface {
+    rotate: number;
+    position: {x: number, y: number}
+}
 
-const BugIcon = () => (
+const BugIcon = ({ rotate, position }: propsInterface) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 200 200"
     width="200"
     height="200"
+    transform={`translate(${position.x - 300}, ${position.y - 300}) rotate(${rotate})`}
   >
     <circle cx="100" cy="100" r="40" fill="green" />
     <circle cx="100" cy="50" r="15" fill="green" />
